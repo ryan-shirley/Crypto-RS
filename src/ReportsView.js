@@ -1,10 +1,6 @@
-import React from 'react'
+import React from "react"
 
 export default () => {
-  console.log('reports')
-  return (
-    <div>
-      reports
-    </div>
-  )
+    console.log("reports")
+    return <div>reports</div>
 }
