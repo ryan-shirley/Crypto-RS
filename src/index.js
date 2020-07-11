@@ -11,6 +11,8 @@ import firebaseConfig from "./firebase.config"
 
 import ProtectedRouteHoc from "./ProtectedRouteHoc"
 
+import * as serviceWorker from "./serviceWorker"
+
 firebase.initializeApp(firebaseConfig)
 
 export const AuthContext = React.createContext(null)
@@ -63,3 +65,8 @@ function App() {
 
 const rootElement = document.getElementById("root")
 ReactDOM.render(<App />, rootElement)
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister()
