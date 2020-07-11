@@ -1,9 +1,9 @@
 export default {
-  apiKey: "AIzaSyDfu53prPBUJXZKMxryn27MCvFP9zuXnGU",
-  authDomain: "sexy-auth.firebaseapp.com",
-  databaseURL: "https://sexy-auth.firebaseio.com",
-  projectId: "sexy-auth",
-  storageBucket: "",
-  messagingSenderId: "219620184506",
-  appId: "1:219620184506:web:333528e32e721d50"
+  apiKey: "AIzaSyBKoP3147BxfT2q5MVA5hQhrdXo839lPjE",
+  authDomain: "crypto-rs.firebaseapp.com",
+  databaseURL: "https://crypto-rs.firebaseio.com",
+  projectId: "crypto-rs",
+  storageBucket: "crypto-rs.appspot.com",
+  messagingSenderId: "386476175095",
+  appId: "1:386476175095:web:2f453d504b03003a382df2"
 };
