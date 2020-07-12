@@ -3,8 +3,8 @@ import Login from "./auth/login"
 import Join from "./auth/join"
 
 const routes = [
-    { name: "Join", path: "/", exact: true, main: () => <Join /> },
-    { name: "Login", path: "/login", exact: true, main: () => <Login /> },
+    { name: "Login", path: "/", exact: true, main: () => <Login /> },
+    { name: "Join", path: "/join", exact: true, main: () => <Join /> },
 ]
 
 export default routes

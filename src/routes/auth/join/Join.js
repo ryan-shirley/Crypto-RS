@@ -20,9 +20,8 @@ const Join = ({ history }) => {
                     .auth()
                     .createUserWithEmailAndPassword(email, password)
                     .then((res) => {
-                        console.log(res)
-                        history.push("/reports")
                         if (res.user) Auth.setLoggedIn(true)
+                        history.push("/reports")
                     })
                     .catch((e) => {
                         setErrors(e.message)
@@ -41,9 +40,8 @@ const Join = ({ history }) => {
                     .auth()
                     .signInWithPopup(provider)
                     .then((result) => {
-                        console.log(result)
-                        history.push("/reports")
                         Auth.setLoggedIn(true)
+                        history.push("/reports")
                     })
                     .catch((e) => setErrors(e.message))
             })

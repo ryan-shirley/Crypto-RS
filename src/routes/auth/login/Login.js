@@ -38,9 +38,8 @@ const Login = ({ history }) => {
                     .auth()
                     .signInWithPopup(provider)
                     .then((result) => {
-                        console.log(result)
-                        history.push("/reports")
                         Auth.setLoggedIn(true)
+                        history.push("/reports")
                     })
                     .catch((e) => setErrors(e.message))
             })
