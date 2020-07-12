@@ -1,10 +1,3 @@
-indreklasn/react-fire-auth-example is being sponsored by the following tool; please help to support us by taking a look and signing up to a free trial.
+# Crypto RS
 
-<a href="https://tracking.gitads.io/?repo=indreklasn+react-fire-auth-example">
-<img src="https://images.gitads.io/indreklasn+react-fire-auth-example" alt="GitAds"/> </a>
-
-___________
-
-![](https://res.cloudinary.com/da7jhtpgh/image/upload/v1561460799/1_gNbgOlIEl1xNoJHE6WGm8Q_mhvnz9.png)
-
-https://medium.com/@indreklasn/dead-simple-auth-with-react-and-firebase-592e40ff43c5
+A PWA that is aimed to be easily usable on mobile to replace loading the HiveOS desktop site and Mining pools seperately. Crypto mining monitoring for HiveOS and pools.
