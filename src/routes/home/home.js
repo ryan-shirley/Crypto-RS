@@ -45,7 +45,7 @@ export default class Home extends React.Component {
     render() {
         return (
             <>
-                <h1>Home {this.state.user.name}</h1>
+                <h1>Welcome {this.state.user.name}</h1>
                 <Link to="/pools">Pools</Link>
             </>
         )
