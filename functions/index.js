@@ -12,7 +12,7 @@ const db = admin.firestore()
  * @param {Object} context Details about the event.
  */
 const createProfile = (userRecord, context) => {
-    const { displayName, uid } = userRecord
+    const { email, displayName, uid } = userRecord
 
     return db
         .collection("Users")
