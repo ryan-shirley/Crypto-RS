@@ -1,5 +1,5 @@
 import React from "react"
-import ReportsView from "./ReportsView"
+import ReportsView from "./reports"
 
 const protectedRoutes = [
     {
