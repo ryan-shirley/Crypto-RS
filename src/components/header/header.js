@@ -29,7 +29,7 @@ const Header = ({ history }) => {
             ))}
             {isLoggedIn && (
                 <li>
-                    <Link to="/reports">Reports</Link>
+                    <Link to="/home">Home</Link>
                 </li>
             )}
             <li onClick={signOut}>Logout</li>
