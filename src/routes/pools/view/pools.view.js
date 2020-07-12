@@ -189,6 +189,13 @@ export default class PoolsView extends React.Component {
                         </p>
                     </div>
                 ))}
+
+                <h3>Mining Address</h3>
+                <div className="row">
+                    <div className="col">
+                        <p>{address}</p>
+                    </div>
+                </div>
             </>
         )
     }
