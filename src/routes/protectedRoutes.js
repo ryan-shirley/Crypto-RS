@@ -1,12 +1,12 @@
 import React from "react"
-import ReportsView from "./reports"
+import Home from "./home"
 
 const protectedRoutes = [
     {
-        name: "reports",
+        name: "home",
         exact: true,
-        path: "/reports",
-        main: (props) => <ReportsView {...props} />,
+        path: "/home",
+        main: (props) => <Home {...props} />,
         public: false,
     },
 ]

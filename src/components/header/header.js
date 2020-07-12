@@ -1,9 +1,8 @@
 import React, { useContext } from "react"
 import routes from "../../routes/routes"
-import { Link } from "react-router-dom"
 import { AuthContext } from "../app/App"
 import * as firebase from "firebase"
-import { withRouter } from "react-router-dom"
+import { withRouter, Link } from "react-router-dom"
 
 const Header = ({ history }) => {
     const Auth = useContext(AuthContext)
