@@ -1,2 +1,5 @@
 node_modules
 .DS_Store
+firebase-debug.log
+service-account-file.json
+functions/ui-debug.log
