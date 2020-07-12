@@ -13,6 +13,10 @@ const Header = ({ history }) => {
 
         await firebase.auth().signOut()
         Auth.setLoggedIn(false)
+
+        localStorage.removeItem("UID")
+        localStorage.removeItem("displayName")
+
         history.push("/")
     }
 

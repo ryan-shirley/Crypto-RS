@@ -22,7 +22,16 @@ const Join = ({ history }) => {
                     .auth()
                     .createUserWithEmailAndPassword(email, password)
                     .then((res) => {
-                        if (res.user) Auth.setLoggedIn(true)
+                        if (res.user) {
+                            Auth.setLoggedIn(true)
+
+                            const { user } = res,
+                                { uid, displayName } = user
+
+                            localStorage.setItem("UID", uid)
+                            localStorage.setItem("displayName", displayName)
+                        }
+
                         history.push("/home")
                     })
                     .catch((e) => {
@@ -44,6 +53,12 @@ const Join = ({ history }) => {
                     .then((result) => {
                         Auth.setLoggedIn(true)
                         history.push("/home")
+
+                        const { user } = result,
+                            { uid, displayName } = user
+
+                        localStorage.setItem("UID", uid)
+                        localStorage.setItem("displayName", displayName)
                     })
                     .catch((e) => setErrors(e.message))
             })

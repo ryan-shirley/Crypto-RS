@@ -10,7 +10,7 @@ const Login = ({ history }) => {
 
     const Auth = useContext(AuthContext),
         { isLoggedIn } = Auth
-        
+
     const handleForm = (e) => {
         e.preventDefault()
         firebase
@@ -21,7 +21,16 @@ const Login = ({ history }) => {
                     .auth()
                     .signInWithEmailAndPassword(email, password)
                     .then((res) => {
-                        if (res.user) Auth.setLoggedIn(true)
+                        if (res.user) {
+                            Auth.setLoggedIn(true)
+
+                            const { user } = res,
+                                { uid, displayName } = user
+
+                            localStorage.setItem("UID", uid)
+                            localStorage.setItem("displayName", displayName)
+                        }
+
                         history.push("/home")
                     })
                     .catch((e) => {
@@ -40,6 +49,12 @@ const Login = ({ history }) => {
                     .auth()
                     .signInWithPopup(provider)
                     .then((result) => {
+                        const { user } = result,
+                            { uid, displayName } = user
+
+                        localStorage.setItem("UID", uid)
+                        localStorage.setItem("displayName", displayName)
+
                         Auth.setLoggedIn(true)
                         history.push("/home")
                     })
