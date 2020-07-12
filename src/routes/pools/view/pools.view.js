@@ -97,7 +97,7 @@ export default class PoolsView extends React.Component {
                     <div className="col-6">
                         <p>
                             <span className="text-warning">{totalUnpaid}</span>{" "}
-                            {currency}
+                            {currency} - {(totalUnpaid * 100).toFixed(0)}%
                         </p>
                     </div>
                     <div className="col-6">
