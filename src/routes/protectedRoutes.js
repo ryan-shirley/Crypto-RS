@@ -1,6 +1,7 @@
 import React from "react"
 import Home from "./home"
 import Pools from "./pools"
+import PoolsView from "./pools/view"
 
 const protectedRoutes = [
     {
@@ -15,6 +16,13 @@ const protectedRoutes = [
         exact: true,
         path: "/pools",
         main: (props) => <Pools {...props} />,
+        public: false,
+    },
+    {
+        name: "pools.view",
+        exact: true,
+        path: "/pools/view",
+        main: (props) => <PoolsView {...props} />,
         public: false,
     },
 ]
