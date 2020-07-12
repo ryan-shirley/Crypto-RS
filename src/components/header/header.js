@@ -22,7 +22,7 @@ const Header = ({ history }) => {
 
     return (
         <ul className="nav">
-            {routes.map((route, i) => (
+            {!isLoggedIn && routes.map((route, i) => (
                 <li key={i}>
                     <Link to={route.path}>{route.name}</Link>
                 </li>
