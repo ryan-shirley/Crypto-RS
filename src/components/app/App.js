@@ -4,6 +4,8 @@ import routes from "../../routes/routes.js"
 import Header from "../header"
 import "./styles.css"
 
+import NoMatch404 from "../../routes/404"
+
 import protectedRoutes from "../../routes/protectedRoutes"
 import * as firebase from "firebase"
 import config from "../../config"
@@ -60,6 +62,7 @@ function App() {
                                     component={route.main}
                                 />
                             ))}
+                            <Route component={NoMatch404} />
                         </Switch>
                     </Router>
                 </div>
