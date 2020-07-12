@@ -13,6 +13,7 @@ import config from "../../config"
 import ProtectedRouteHoc from "../../routes/ProtectedRouteHoc"
 
 firebase.initializeApp(config.firebaseConfig)
+let db = firebase.firestore();
 
 /**
  * App() Main used for routing and general layout
@@ -73,3 +74,4 @@ function App() {
 
 export default App
 export const AuthContext = React.createContext(null)
+export { firebase, db }

@@ -4,5 +4,11 @@ service cloud.firestore {
     match /{document=**} {
       allow read, write: if false;
     }
+    match /Users/{uid} {
+      allow read: if true;
+    }
+    match /Pools/{document} {
+      allow read: if request.auth != null && exists(/databases/$(database)/documents/Users/$(request.auth.uid))
+    }
   }
 }
