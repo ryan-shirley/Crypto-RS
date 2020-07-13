@@ -2,6 +2,9 @@ import React from "react"
 import { Link } from "react-router-dom"
 // import { db } from "../../components/app/App"
 
+// Components
+import { Card } from "react-bootstrap"
+
 export default class Home extends React.Component {
     constructor(props) {
         super(props)
@@ -46,7 +49,9 @@ export default class Home extends React.Component {
         return (
             <>
                 <h1>Welcome {this.state.user.name}</h1>
-                <Link to="/pools">Pools</Link>
+                <Card body>
+                    <Link to="/pools">Pools</Link>
+                </Card>
             </>
         )
     }

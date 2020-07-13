@@ -2,6 +2,9 @@ import React from "react"
 import queryString from "query-string"
 import axios from "axios"
 
+// Components
+import { Container, Row, Col, Card } from "react-bootstrap"
+
 export default class PoolsView extends React.Component {
     constructor(props) {
         super(props)
@@ -89,113 +92,159 @@ export default class PoolsView extends React.Component {
 
         return (
             <>
-                <h1>{pool}</h1>
-                <p>{currency}</p>
+                <Container fluid>
+                    <div className="text-center">
+                        <h1>{pool}</h1>
+                        <p className="text-uppercase">{currency}</p>
+                    </div>
 
-                <h3>Unpaid balance</h3>
-                <div className="row">
-                    <div className="col-6">
-                        <p>
-                            <span className="text-warning">{totalUnpaid}</span>{" "}
-                            {currency} - {(totalUnpaid * 100).toFixed(0)}%
-                        </p>
-                    </div>
-                    <div className="col-6">
-                        <p>
-                            <span className="text-warning">-</span> EUR
-                        </p>
-                    </div>
-                </div>
+                    <h3>Unpaid balance</h3>
+                    <Row>
+                        <Col xs={6}>
+                            <p>
+                                <span className="text-warning">
+                                    {totalUnpaid}
+                                </span>{" "}
+                                {currency} - {(totalUnpaid * 100).toFixed(0)}%
+                            </p>
+                        </Col>
+                        <Col xs={6}>
+                            <p>
+                                <span className="text-warning">-</span> EUR
+                            </p>
+                        </Col>
+                    </Row>
 
-                <h3>Expected earnings</h3>
-                <div className="row">
-                    <div className="col-6">
-                        <h4>Day</h4>
-                        <p>
-                            <span className="text-warning">
-                                {expectedReward24H}
-                            </span>{" "}
-                            {currency}
-                        </p>
-                    </div>
-                    <div className="col-6">
-                        <h4>Week</h4>
-                        <p>
-                            <span className="text-warning">
-                                {expectedRewardWeek}
-                            </span>{" "}
-                            {currency}
-                        </p>
-                    </div>
-                </div>
+                    <h3>Expected earnings</h3>
+                    <Row>
+                        <Col xs={6}>
+                            <h4>Day</h4>
+                            <p>
+                                <span className="text-warning">
+                                    {expectedReward24H}
+                                </span>{" "}
+                                {currency}
+                            </p>
+                        </Col>
+                        <Col xs={6}>
+                            <h4>Week</h4>
+                            <p>
+                                <span className="text-warning">
+                                    {expectedRewardWeek}
+                                </span>{" "}
+                                {currency}
+                            </p>
+                        </Col>
+                    </Row>
 
-                <h3>Total paid</h3>
-                <div className="row">
-                    <div className="col-6">
-                        <p>
-                            <span className="text-warning">{totalPaid}</span>{" "}
-                            {currency}
-                        </p>
-                    </div>
-                    <div className="col-6">
-                        <p>
-                            <span className="text-warning">-</span> EUR
-                        </p>
-                    </div>
-                </div>
+                    <h3>Total paid</h3>
+                    <Row>
+                        <Col xs={6}>
+                            <p>
+                                <span className="text-warning">
+                                    {totalPaid}
+                                </span>{" "}
+                                {currency}
+                            </p>
+                        </Col>
+                        <Col xs={6}>
+                            <p>
+                                <span className="text-warning">-</span> EUR
+                            </p>
+                        </Col>
+                    </Row>
 
-                <h3>Workers</h3>
-                {Object.keys(workers).map((workerName) => (
-                    <div key={workerName}>
-                        <p>{workerName}</p>
-                        <p>
-                            Online: {workers[workerName].online ? "Yes" : "No"}
-                        </p>
-                        <p>
-                            Real Time Hashrate:{" "}
-                            {this.convertToMH(workers[workerName].hashrate)}{" "}
-                            MH/s
-                        </p>
-                        <p>
-                            Avg. Hashrate over 24h:{" "}
-                            {this.convertToMH(workers[workerName].hashrate24h)}{" "}
-                            MH/s
-                        </p>
-                        <p>
-                            Reported Hashrate:{" "}
-                            {this.convertToMH(
-                                workers[workerName].reportedHashrate
-                            )}{" "}
-                            MH/s
-                        </p>
-                        <p>
-                            Reported Hashrate over 24h:{" "}
-                            {this.convertToMH(
-                                workers[workerName].reportedHashrate24h
-                            )}{" "}
-                            MH/s
-                        </p>
-                        <p>
-                            Valid shares:{" "}
-                            {workers[workerName].sharesStatusStats.validCount} -{" "}
-                            {workers[
-                                workerName
-                            ].sharesStatusStats.validRate.toFixed(2)}
-                            %
-                        </p>
-                        <p>
-                            Stale shares:{" "}
-                            {workers[workerName].sharesStatusStats.staleCount}
-                        </p>
-                    </div>
-                ))}
+                    <h3>Workers</h3>
+                    {Object.keys(workers).map((workerName) => (
+                        <Card key={workerName} className="mb-3">
+                            <Card.Header>
+                                {workerName} -{" "}
+                                {workers[workerName].online
+                                    ? "Online"
+                                    : "Offline"}
+                            </Card.Header>
+                            <Card.Body>
+                                <Card.Text>
+                                    <Row>
+                                        <Col xs={6}>
+                                            <h4>
+                                                {this.convertToMH(
+                                                    workers[workerName].hashrate
+                                                )}{" "}
+                                                MH/s
+                                            </h4>
+                                            <p>Real Time Hashrate</p>
+                                        </Col>
+                                        <Col xs={6}>
+                                            <h5>
+                                                {this.convertToMH(
+                                                    workers[workerName]
+                                                        .hashrate24h
+                                                )}{" "}
+                                                MH/s
+                                            </h5>
+                                            <p>Avg. Hashrate over 24h</p>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs={6}>
+                                            <h5>
+                                                {this.convertToMH(
+                                                    workers[workerName]
+                                                        .reportedHashrate
+                                                )}{" "}
+                                                MH/s
+                                            </h5>
+                                            <p>Reported Hashrate</p>
+                                        </Col>
+                                        <Col xs={6}>
+                                            <h5>
+                                                {this.convertToMH(
+                                                    workers[workerName]
+                                                        .reportedHashrate24h
+                                                )}{" "}
+                                                MH/s
+                                            </h5>
+                                            <p>Reported Hashrate over 24h</p>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col xs={6}>
+                                            <h5>
+                                                {
+                                                    workers[workerName]
+                                                        .sharesStatusStats
+                                                        .validCount
+                                                }{" "}
+                                                -{" "}
+                                                {workers[
+                                                    workerName
+                                                ].sharesStatusStats.validRate.toFixed(
+                                                    2
+                                                )}
+                                                %
+                                            </h5>
+                                            <p>Valid shares</p>
+                                        </Col>
+                                        <Col xs={6}>
+                                            <h5>
+                                                {this.convertToMH(
+                                                    workers[workerName]
+                                                        .sharesStatusStats
+                                                        .staleCount
+                                                )}
+                                            </h5>
+                                            <p>Stale shares</p>
+                                        </Col>
+                                    </Row>
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    ))}
 
-                <h3>Mining Address</h3>
-                <div className="row">
-                    <div className="col">
-                        <p>{address}</p>
-                    </div>
-                </div>
+                    <h3>Mining Address</h3>
+                    <p className="text-wrap">{address}</p>
+                </Container>
             </>
         )
     }

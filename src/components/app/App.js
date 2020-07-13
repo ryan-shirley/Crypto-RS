@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom"
 import routes from "../../routes/routes.js"
 import Header from "../header"
-import "./styles.css"
 import '../../scss/main.scss'
 
 import NoMatch404 from "../../routes/404"

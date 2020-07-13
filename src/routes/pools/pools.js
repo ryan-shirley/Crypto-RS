@@ -2,6 +2,9 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { db } from "../../components/app/App"
 
+// Components
+import { Card } from "react-bootstrap"
+
 export default class Pools extends React.Component {
     constructor() {
         super()
@@ -44,11 +47,15 @@ export default class Pools extends React.Component {
             <>
                 <h1>Mining Pools</h1>
                 <p>Together or solo?</p>
-                <ul>
-                    {this.state.pools.map((pool) => (
-                        <li><Link to={`/pools/view?pool=${pool.name}&currency=${pool.currency}&address=${pool.address}`}>{pool.name} - {pool.currency}</Link></li>
-                    ))}
-                </ul>
+                {this.state.pools.map((pool) => (
+                    <Card body>
+                        <Link
+                            to={`/pools/view?pool=${pool.name}&currency=${pool.currency}&address=${pool.address}`}
+                        >
+                            {pool.name} - {pool.currency}
+                        </Link>
+                    </Card>
+                ))}
             </>
         )
     }
