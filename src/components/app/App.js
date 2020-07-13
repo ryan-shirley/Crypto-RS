@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom"
 import routes from "../../routes/routes.js"
 import Header from "../header"
-import '../../scss/main.scss'
+import "../../scss/main.scss"
 
 import NoMatch404 from "../../routes/404"
 
@@ -13,7 +13,7 @@ import config from "../../config"
 import ProtectedRouteHoc from "../../routes/ProtectedRouteHoc"
 
 firebase.initializeApp(config.firebaseConfig)
-let db = firebase.firestore();
+let db = firebase.firestore()
 
 /**
  * App() Main used for routing and general layout
@@ -22,16 +22,22 @@ function App() {
     const [isLoggedIn, setLoggedIn] = useState(false)
     const [isBusy, setBusy] = useState(true)
 
-    function readSession() {
-        const user = window.sessionStorage.getItem(
-            `firebase:authUser:${config.firebaseConfig.apiKey}:[DEFAULT]`
-        )
-        if (user) setLoggedIn(true)
+    function readLoginState() {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in.
+                setLoggedIn(true)
+            } else {
+                // No user is signed in.
+                setLoggedIn(false)
+                console.log("User logged out")
+            }
 
-        setBusy(false)
+            setBusy(false)
+        })
     }
     useEffect(() => {
-        readSession()
+        readLoginState()
     }, [])
 
     if (isBusy) {

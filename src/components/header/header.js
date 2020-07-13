@@ -12,7 +12,6 @@ const Header = ({ history }) => {
         console.log("Logging user out")
 
         await firebase.auth().signOut()
-        Auth.setLoggedIn(false)
 
         localStorage.removeItem("UID")
         localStorage.removeItem("displayName")

@@ -16,27 +16,22 @@ const Join = ({ history }) => {
 
         firebase
             .auth()
-            .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-            .then(() => {
-                firebase
-                    .auth()
-                    .createUserWithEmailAndPassword(email, password)
-                    .then((res) => {
-                        if (res.user) {
-                            Auth.setLoggedIn(true)
+            .createUserWithEmailAndPassword(email, password)
+            .then((res) => {
+                if (res.user) {
+                    Auth.setLoggedIn(true)
 
-                            const { user } = res,
-                                { uid, displayName } = user
+                    const { user } = res,
+                        { uid, displayName } = user
 
-                            localStorage.setItem("UID", uid)
-                            localStorage.setItem("displayName", displayName)
-                        }
+                    localStorage.setItem("UID", uid)
+                    localStorage.setItem("displayName", displayName)
+                }
 
-                        history.push("/home")
-                    })
-                    .catch((e) => {
-                        setErrors(e.message)
-                    })
+                history.push("/home")
+            })
+            .catch((e) => {
+                setErrors(e.message)
             })
     }
 

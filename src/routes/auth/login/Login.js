@@ -13,29 +13,25 @@ const Login = ({ history }) => {
 
     const handleForm = (e) => {
         e.preventDefault()
+
         firebase
             .auth()
-            .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-            .then(() => {
-                firebase
-                    .auth()
-                    .signInWithEmailAndPassword(email, password)
-                    .then((res) => {
-                        if (res.user) {
-                            Auth.setLoggedIn(true)
+            .signInWithEmailAndPassword(email, password)
+            .then((res) => {
+                if (res.user) {
+                    Auth.setLoggedIn(true)
 
-                            const { user } = res,
-                                { uid, displayName } = user
+                    const { user } = res,
+                        { uid, displayName } = user
 
-                            localStorage.setItem("UID", uid)
-                            localStorage.setItem("displayName", displayName)
-                        }
+                    localStorage.setItem("UID", uid)
+                    localStorage.setItem("displayName", displayName)
+                }
 
-                        history.push("/home")
-                    })
-                    .catch((e) => {
-                        setErrors(e.message)
-                    })
+                history.push("/home")
+            })
+            .catch((e) => {
+                setErrors(e.message)
             })
     }
 
@@ -43,22 +39,21 @@ const Login = ({ history }) => {
         const provider = new firebase.auth.GoogleAuthProvider()
         firebase
             .auth()
-            .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-            .then(() => {
-                firebase
-                    .auth()
-                    .signInWithPopup(provider)
-                    .then((result) => {
-                        const { user } = result,
-                            { uid, displayName } = user
+            .signInWithPopup(provider)
+            .then((result) => {
+                console.log(result)
 
-                        localStorage.setItem("UID", uid)
-                        localStorage.setItem("displayName", displayName)
+                const { user } = result,
+                    { uid, displayName } = user
 
-                        Auth.setLoggedIn(true)
-                        history.push("/home")
-                    })
-                    .catch((e) => setErrors(e.message))
+                localStorage.setItem("UID", uid)
+                localStorage.setItem("displayName", displayName)
+
+                Auth.setLoggedIn(true)
+                history.push("/home")
+            })
+            .catch((e) => {
+                setErrors(e.message)
             })
     }
 
