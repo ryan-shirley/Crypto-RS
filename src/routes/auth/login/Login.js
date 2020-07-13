@@ -15,7 +15,7 @@ const Login = ({ history }) => {
         e.preventDefault()
         firebase
             .auth()
-            .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+            .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
             .then(() => {
                 firebase
                     .auth()
@@ -43,7 +43,7 @@ const Login = ({ history }) => {
         const provider = new firebase.auth.GoogleAuthProvider()
         firebase
             .auth()
-            .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+            .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
             .then(() => {
                 firebase
                     .auth()

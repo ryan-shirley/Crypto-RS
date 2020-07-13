@@ -16,7 +16,7 @@ const Join = ({ history }) => {
 
         firebase
             .auth()
-            .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+            .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
             .then(() => {
                 firebase
                     .auth()
@@ -45,7 +45,7 @@ const Join = ({ history }) => {
 
         firebase
             .auth()
-            .setPersistence(firebase.auth.Auth.Persistence.SESSION)
+            .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
             .then(() => {
                 firebase
                     .auth()
