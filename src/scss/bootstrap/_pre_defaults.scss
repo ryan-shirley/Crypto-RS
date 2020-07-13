@@ -1,0 +1,22 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+// Regular font family
+$font-family-base: brandon-grotesque, sans-serif;
+
+// Site spacing
+$spacer: 1rem * 1.875;
+$spacer-sm: $spacer / 2;
+$spacer-lg: $spacer * 2;
+
+// Colours
+$black: #000;
+$green: #75a0a4;
+$cyan: #82c5d9; // Theme info
+$yellow: #ed9e32;
+
+// Change Theme Colours
+$primary: #5c889a;
+$body-bg: #f5f8f9;
+$light: darken($body-bg, 15%);
