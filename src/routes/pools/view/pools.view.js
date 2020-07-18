@@ -4,7 +4,7 @@ import axios from "axios"
 
 // Components
 import Layout from "../../../components/layout"
-import { Row, Col, Card } from "react-bootstrap"
+import { Row, Col } from "react-bootstrap"
 
 export default class PoolsView extends React.Component {
     constructor(props) {
@@ -20,6 +20,7 @@ export default class PoolsView extends React.Component {
             address,
             workers: {},
             earnings: {},
+            stats: {},
             previous24hRewards: "",
         }
     }
@@ -31,8 +32,9 @@ export default class PoolsView extends React.Component {
         console.log("Component mounted")
 
         if (this.state.pool === "Hiveon") {
-            this.getHiveonWorkers(this.state.address, this.state.currency)
+            // this.getHiveonWorkers(this.state.address, this.state.currency)
             this.getHiveOnEarnings(this.state.address, this.state.currency)
+            this.getHiveOnStats(this.state.address, this.state.currency)
         }
     }
 
@@ -49,6 +51,26 @@ export default class PoolsView extends React.Component {
             .then((res) => {
                 this.setState({
                     workers: res.data.workers,
+                })
+            })
+            .catch((err) => {
+                console.log(err.response.message)
+            })
+    }
+
+    /**
+     * getHiveOnStats() Returns stats
+     */
+    getHiveOnStats(address, currency) {
+        let endpoint = `https://hiveon.net/api/v1/stats/miner/${address.substring(
+            2
+        )}/${currency.toUpperCase()}`
+
+        axios
+            .get(endpoint)
+            .then((res) => {
+                this.setState({
+                    stats: res.data,
                 })
             })
             .catch((err) => {
@@ -92,10 +114,9 @@ export default class PoolsView extends React.Component {
     render() {
         let {
                 currency,
-                address,
                 pool,
                 earnings,
-                workers,
+                stats,
                 previous24hRewards,
             } = this.state,
             {
@@ -105,10 +126,12 @@ export default class PoolsView extends React.Component {
                 totalUnpaid,
             } = earnings
 
+        
+
         return (
             <>
                 <Layout title={pool} subTitle={currency}>
-                    <h3>Unpaid balance</h3>
+                    <h5>Unpaid balance</h5>
                     <Row>
                         <Col xs={6}>
                             <p>
@@ -118,14 +141,14 @@ export default class PoolsView extends React.Component {
                                 {currency} - {(totalUnpaid * 100).toFixed(0)}%
                             </p>
                         </Col>
-                        <Col xs={6}>
+                        <Col xs={6} className="text-right">
                             <p>
                                 <span className="text-warning">-</span> EUR
                             </p>
                         </Col>
                     </Row>
 
-                    <h3>Expected earnings</h3>
+                    <h5>Expected earnings</h5>
                     <Row>
                         <Col xs={6}>
                             <h4>Day</h4>
@@ -136,7 +159,7 @@ export default class PoolsView extends React.Component {
                                 {currency}
                             </p>
                         </Col>
-                        <Col xs={6}>
+                        <Col xs={6} className="text-right">
                             <h4>Week</h4>
                             <p>
                                 <span className="text-warning">
@@ -147,7 +170,7 @@ export default class PoolsView extends React.Component {
                         </Col>
                     </Row>
 
-                    <h3>Previous 24hr earnings</h3>
+                    <h5>Previous 24hr earnings</h5>
                     <Row>
                         <Col xs={6}>
                             <p>
@@ -157,14 +180,14 @@ export default class PoolsView extends React.Component {
                                 {currency}
                             </p>
                         </Col>
-                        <Col xs={6}>
+                        <Col xs={6} className="text-right">
                             <p>
                                 <span className="text-warning">-</span> EUR
                             </p>
                         </Col>
                     </Row>
 
-                    <h3>Total paid</h3>
+                    <h5>Total paid</h5>
                     <Row>
                         <Col xs={6}>
                             <p>
@@ -174,103 +197,75 @@ export default class PoolsView extends React.Component {
                                 {currency}
                             </p>
                         </Col>
-                        <Col xs={6}>
+                        <Col xs={6} className="text-right">
                             <p>
                                 <span className="text-warning">-</span> EUR
                             </p>
                         </Col>
                     </Row>
 
-                    <h3>Workers</h3>
-                    {Object.keys(workers).map((workerName) => (
-                        <Card key={workerName} className="mb-3">
-                            <Card.Header>
-                                {workerName} -{" "}
-                                {workers[workerName].online
-                                    ? "Online"
-                                    : "Offline"}
-                            </Card.Header>
-                            <Card.Body>
-                                <Card.Text>
-                                    <Row>
-                                        <Col xs={6}>
-                                            <h4>
-                                                {this.convertToMH(
-                                                    workers[workerName].hashrate
-                                                )}{" "}
-                                                MH/s
-                                            </h4>
-                                            <p>Real Time Hashrate</p>
-                                        </Col>
-                                        <Col xs={6}>
-                                            <h5>
-                                                {this.convertToMH(
-                                                    workers[workerName]
-                                                        .hashrate24h
-                                                )}{" "}
-                                                MH/s
-                                            </h5>
-                                            <p>Avg. Hashrate over 24h</p>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col xs={6}>
-                                            <h5>
-                                                {this.convertToMH(
-                                                    workers[workerName]
-                                                        .reportedHashrate
-                                                )}{" "}
-                                                MH/s
-                                            </h5>
-                                            <p>Reported Hashrate</p>
-                                        </Col>
-                                        <Col xs={6}>
-                                            <h5>
-                                                {this.convertToMH(
-                                                    workers[workerName]
-                                                        .reportedHashrate24h
-                                                )}{" "}
-                                                MH/s
-                                            </h5>
-                                            <p>Reported Hashrate over 24h</p>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col xs={6}>
-                                            <h5>
-                                                {
-                                                    workers[workerName]
-                                                        .sharesStatusStats
-                                                        .validCount
-                                                }{" "}
-                                                -{" "}
-                                                {workers[
-                                                    workerName
-                                                ].sharesStatusStats.validRate.toFixed(
-                                                    2
-                                                )}
-                                                %
-                                            </h5>
-                                            <p>Valid shares</p>
-                                        </Col>
-                                        <Col xs={6}>
-                                            <h5>
-                                                {
-                                                    workers[workerName]
-                                                        .sharesStatusStats
-                                                        .staleCount
-                                                }
-                                            </h5>
-                                            <p>Stale shares</p>
-                                        </Col>
-                                    </Row>
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    ))}
-
-                    <h3>Mining Address</h3>
-                    <p className="text-wrap">{address}</p>
+                    <h5>Stats</h5>
+                    <Row>
+                        <Col xs={6}>
+                            <h4 className="text-warning">
+                                {this.convertToMH(stats.hashrate)}{" "}
+                                MH/s
+                            </h4>
+                            <p>Real Time Hashrate</p>
+                        </Col>
+                        <Col xs={6} className="text-right">
+                            <h5 className="text-warning">
+                                {this.convertToMH(
+                                    stats.hashrate24h
+                                )}{" "}
+                                MH/s
+                            </h5>
+                            <p>Avg. Hashrate over 24h</p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={6}>
+                            <h5 className="text-warning">
+                                {this.convertToMH(
+                                    stats.reportedHashrate
+                                )}{" "}
+                                MH/s
+                            </h5>
+                            <p>Reported Hashrate</p>
+                        </Col>
+                        <Col xs={6} className="text-right">
+                            <h5 className="text-warning">
+                                {this.convertToMH(
+                                    stats.reportedHashrate24h
+                                )}{" "}
+                                MH/s
+                            </h5>
+                            <p>Reported Hashrate over 24h</p>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={6}>
+                            <h5 className="text-warning">
+                                {
+                                    stats.sharesStatusStats && stats.sharesStatusStats
+                                        .validCount
+                                }{" "}
+                                -{" "}
+                                {stats.sharesStatusStats && stats.sharesStatusStats.validRate.toFixed(2)}
+                                %
+                            </h5>
+                            <p>Valid shares</p>
+                        </Col>
+                        <Col xs={6} className="text-right">
+                            <h5 className="text-warning">
+                                {
+                                    stats.sharesStatusStats && stats.sharesStatusStats
+                                        .staleCount
+                                }
+                            </h5>
+                            <p>Stale shares</p>
+                        </Col>
+                    </Row>
                 </Layout>
             </>
         )

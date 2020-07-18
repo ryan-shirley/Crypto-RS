@@ -1,3 +1,6 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the sections spacing of the site/application.
 // -----------------------------------------------------------------------------
+section {
+    margin: $spacer 0;
+}

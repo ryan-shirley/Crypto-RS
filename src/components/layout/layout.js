@@ -5,10 +5,10 @@ const Layout = ({ title, subTitle, children }) => {
     return (
         <>
             <Container fluid>
-                <div className="text-center">
+                <section className="text-center">
                     <h1>{title}</h1>
                     <p className="text-uppercase">{subTitle}</p>
-                </div>
+                </section>
             </Container>
 
             <main className="main">
