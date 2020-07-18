@@ -9,7 +9,7 @@
 // 1. Vendors
 
 // 2. Base stuff
-@import "base/forms";
+@import "base/base", "base/forms";
 
 // 3. Layout-related sections
 @import "layout/footer", "layout/header", "layout/sections";

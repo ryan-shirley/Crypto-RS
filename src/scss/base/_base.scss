@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------------
+// This file contains all base styles in the site/application.
+// -----------------------------------------------------------------------------
+
+.main {
+    padding-top: $spacer-lg;
+    background-color: $body-dark-bg;
+    border-top-left-radius: $border-radius-lg;
+    border-top-right-radius: $border-radius-lg;
+}

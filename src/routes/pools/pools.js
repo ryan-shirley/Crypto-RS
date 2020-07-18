@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { db } from "../../components/app/App"
 
 // Components
+import Layout from "../../components/layout"
 import { Card } from "react-bootstrap"
 
 export default class Pools extends React.Component {
@@ -44,9 +45,7 @@ export default class Pools extends React.Component {
 
     render() {
         return (
-            <>
-                <h1>Mining Pools</h1>
-                <p>Together or solo?</p>
+            <Layout title="Mining Pools" subTitle="Together or solo?">
                 {this.state.pools.map((pool) => (
                     <Card body>
                         <Link
@@ -56,7 +55,7 @@ export default class Pools extends React.Component {
                         </Link>
                     </Card>
                 ))}
-            </>
+            </Layout>
         )
     }
 }

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 // import { db } from "../../components/app/App"
 
 // Components
+import Layout from "../../components/layout"
 import { Card } from "react-bootstrap"
 
 export default class Home extends React.Component {
@@ -48,10 +49,14 @@ export default class Home extends React.Component {
     render() {
         return (
             <>
-                <h1>Welcome {this.state.user.name}</h1>
-                <Card body>
-                    <Link to="/pools">Pools</Link>
-                </Card>
+                <Layout
+                    title={"Welcome " + this.state.user.name}
+                    subTitle="The future of crypto"
+                >
+                    <Card body>
+                        <Link to="/pools">Pools</Link>
+                    </Card>
+                </Layout>
             </>
         )
     }

@@ -3,7 +3,8 @@ import queryString from "query-string"
 import axios from "axios"
 
 // Components
-import { Container, Row, Col, Card } from "react-bootstrap"
+import Layout from "../../../components/layout"
+import { Row, Col, Card } from "react-bootstrap"
 
 export default class PoolsView extends React.Component {
     constructor(props) {
@@ -67,7 +68,8 @@ export default class PoolsView extends React.Component {
             .get(endpoint)
             .then((res) => {
                 let previous24hRewards = res.data.earningStats.reduce(
-                    (acc, stat) => acc + stat.reward, 0
+                    (acc, stat) => acc + stat.reward,
+                    0
                 )
 
                 this.setState({
@@ -105,12 +107,7 @@ export default class PoolsView extends React.Component {
 
         return (
             <>
-                <Container fluid>
-                    <div className="text-center">
-                        <h1>{pool}</h1>
-                        <p className="text-uppercase">{currency}</p>
-                    </div>
-
+                <Layout title={pool} subTitle={currency}>
                     <h3>Unpaid balance</h3>
                     <Row>
                         <Col xs={6}>
@@ -274,7 +271,7 @@ export default class PoolsView extends React.Component {
 
                     <h3>Mining Address</h3>
                     <p className="text-wrap">{address}</p>
-                </Container>
+                </Layout>
             </>
         )
     }
