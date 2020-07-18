@@ -146,6 +146,8 @@ export default class PoolsView extends React.Component {
                         </Col>
                     </Row>
 
+                    <hr />
+
                     <h5>Expected earnings</h5>
                     <Row>
                         <Col xs={6}>
@@ -168,6 +170,8 @@ export default class PoolsView extends React.Component {
                         </Col>
                     </Row>
 
+                    <hr />
+
                     <h5>Previous 24hr earnings</h5>
                     <Row>
                         <Col xs={6}>
@@ -184,6 +188,8 @@ export default class PoolsView extends React.Component {
                             </p>
                         </Col>
                     </Row>
+
+                    <hr />
 
                     <h5>Total paid</h5>
                     <Row>
@@ -202,6 +208,8 @@ export default class PoolsView extends React.Component {
                         </Col>
                     </Row>
 
+                    <hr />
+
                     <h5>Stats</h5>
                     <Row>
                         <Col xs={6}>
@@ -217,6 +225,9 @@ export default class PoolsView extends React.Component {
                             <p>Avg. Hashrate over 24h</p>
                         </Col>
                     </Row>
+
+                    <hr />
+
                     <Row>
                         <Col xs={6}>
                             <h5 className="text-warning">
@@ -232,6 +243,9 @@ export default class PoolsView extends React.Component {
                             <p>Reported Hashrate over 24h</p>
                         </Col>
                     </Row>
+
+                    <hr />
+                    
                     <Row>
                         <Col xs={6}>
                             <h5 className="text-warning">

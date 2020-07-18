@@ -3,8 +3,12 @@
 // -----------------------------------------------------------------------------
 
 .main {
-    padding-top: $spacer-lg;
+    padding: $spacer-lg 0;
     background-color: $body-dark-bg;
     border-top-left-radius: $border-radius-lg;
     border-top-right-radius: $border-radius-lg;
+}
+
+p {
+    margin-bottom: 0;
 }
