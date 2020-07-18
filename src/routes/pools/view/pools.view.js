@@ -19,6 +19,7 @@ export default class PoolsView extends React.Component {
             address,
             workers: {},
             earnings: {},
+            previous24hRewards: "",
         }
     }
 
@@ -65,8 +66,13 @@ export default class PoolsView extends React.Component {
         axios
             .get(endpoint)
             .then((res) => {
+                let previous24hRewards = res.data.earningStats.reduce(
+                    (acc, stat) => acc + stat.reward, 0
+                )
+
                 this.setState({
                     earnings: res.data,
+                    previous24hRewards,
                 })
             })
             .catch((err) => {
@@ -82,7 +88,14 @@ export default class PoolsView extends React.Component {
     }
 
     render() {
-        let { currency, address, pool, earnings, workers } = this.state,
+        let {
+                currency,
+                address,
+                pool,
+                earnings,
+                workers,
+                previous24hRewards,
+            } = this.state,
             {
                 expectedReward24H,
                 expectedRewardWeek,
@@ -133,6 +146,23 @@ export default class PoolsView extends React.Component {
                                     {expectedRewardWeek}
                                 </span>{" "}
                                 {currency}
+                            </p>
+                        </Col>
+                    </Row>
+
+                    <h3>Previous 24hr earnings</h3>
+                    <Row>
+                        <Col xs={6}>
+                            <p>
+                                <span className="text-warning">
+                                    {previous24hRewards}
+                                </span>{" "}
+                                {currency}
+                            </p>
+                        </Col>
+                        <Col xs={6}>
+                            <p>
+                                <span className="text-warning">-</span> EUR
                             </p>
                         </Col>
                     </Row>
@@ -228,11 +258,11 @@ export default class PoolsView extends React.Component {
                                         </Col>
                                         <Col xs={6}>
                                             <h5>
-                                                {this.convertToMH(
+                                                {
                                                     workers[workerName]
                                                         .sharesStatusStats
                                                         .staleCount
-                                                )}
+                                                }
                                             </h5>
                                             <p>Stale shares</p>
                                         </Col>
