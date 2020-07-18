@@ -52,6 +52,7 @@ export default class Home extends React.Component {
                 <Layout
                     title={"Welcome " + this.state.user.name}
                     subTitle="The future of crypto"
+                    classSlug="home"
                 >
                     <Card body>
                         <Link to="/pools">Pools</Link>

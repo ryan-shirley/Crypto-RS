@@ -45,7 +45,11 @@ export default class Pools extends React.Component {
 
     render() {
         return (
-            <Layout title="Mining Pools" subTitle="Together or solo?">
+            <Layout
+                title="Mining Pools"
+                subTitle="Together or solo?"
+                classSlug="pool-list"
+            >
                 {this.state.pools.map((pool) => (
                     <Card body>
                         <Link

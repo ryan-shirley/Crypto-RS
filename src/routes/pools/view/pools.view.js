@@ -126,11 +126,9 @@ export default class PoolsView extends React.Component {
                 totalUnpaid,
             } = earnings
 
-        
-
         return (
             <>
-                <Layout title={pool} subTitle={currency}>
+                <Layout title={pool} subTitle={currency} classSlug="pool-view">
                     <h5>Unpaid balance</h5>
                     <Row>
                         <Col xs={6}>
@@ -151,7 +149,7 @@ export default class PoolsView extends React.Component {
                     <h5>Expected earnings</h5>
                     <Row>
                         <Col xs={6}>
-                            <h4>Day</h4>
+                            <h6>Day</h6>
                             <p>
                                 <span className="text-warning">
                                     {expectedReward24H}
@@ -160,7 +158,7 @@ export default class PoolsView extends React.Component {
                             </p>
                         </Col>
                         <Col xs={6} className="text-right">
-                            <h4>Week</h4>
+                            <h6>Week</h6>
                             <p>
                                 <span className="text-warning">
                                     {expectedRewardWeek}
@@ -207,18 +205,14 @@ export default class PoolsView extends React.Component {
                     <h5>Stats</h5>
                     <Row>
                         <Col xs={6}>
-                            <h4 className="text-warning">
-                                {this.convertToMH(stats.hashrate)}{" "}
-                                MH/s
-                            </h4>
+                            <h5 className="text-warning">
+                                {this.convertToMH(stats.hashrate)} MH/s
+                            </h5>
                             <p>Real Time Hashrate</p>
                         </Col>
                         <Col xs={6} className="text-right">
                             <h5 className="text-warning">
-                                {this.convertToMH(
-                                    stats.hashrate24h
-                                )}{" "}
-                                MH/s
+                                {this.convertToMH(stats.hashrate24h)} MH/s
                             </h5>
                             <p>Avg. Hashrate over 24h</p>
                         </Col>
@@ -226,18 +220,13 @@ export default class PoolsView extends React.Component {
                     <Row>
                         <Col xs={6}>
                             <h5 className="text-warning">
-                                {this.convertToMH(
-                                    stats.reportedHashrate
-                                )}{" "}
-                                MH/s
+                                {this.convertToMH(stats.reportedHashrate)} MH/s
                             </h5>
                             <p>Reported Hashrate</p>
                         </Col>
                         <Col xs={6} className="text-right">
                             <h5 className="text-warning">
-                                {this.convertToMH(
-                                    stats.reportedHashrate24h
-                                )}{" "}
+                                {this.convertToMH(stats.reportedHashrate24h)}{" "}
                                 MH/s
                             </h5>
                             <p>Reported Hashrate over 24h</p>
@@ -246,22 +235,21 @@ export default class PoolsView extends React.Component {
                     <Row>
                         <Col xs={6}>
                             <h5 className="text-warning">
-                                {
-                                    stats.sharesStatusStats && stats.sharesStatusStats
-                                        .validCount
-                                }{" "}
+                                {stats.sharesStatusStats &&
+                                    stats.sharesStatusStats.validCount}{" "}
                                 -{" "}
-                                {stats.sharesStatusStats && stats.sharesStatusStats.validRate.toFixed(2)}
+                                {stats.sharesStatusStats &&
+                                    stats.sharesStatusStats.validRate.toFixed(
+                                        2
+                                    )}
                                 %
                             </h5>
                             <p>Valid shares</p>
                         </Col>
                         <Col xs={6} className="text-right">
                             <h5 className="text-warning">
-                                {
-                                    stats.sharesStatusStats && stats.sharesStatusStats
-                                        .staleCount
-                                }
+                                {stats.sharesStatusStats &&
+                                    stats.sharesStatusStats.staleCount}
                             </h5>
                             <p>Stale shares</p>
                         </Col>

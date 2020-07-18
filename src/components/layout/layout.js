@@ -1,7 +1,7 @@
 import React from "react"
 import { Container } from "react-bootstrap"
 
-const Layout = ({ title, subTitle, children }) => {
+const Layout = ({ title, subTitle, children, classSlug = "" }) => {
     return (
         <>
             <Container fluid>
@@ -11,7 +11,7 @@ const Layout = ({ title, subTitle, children }) => {
                 </section>
             </Container>
 
-            <main className="main">
+            <main className={"main " + classSlug}>
                 <Container fluid>{children}</Container>
             </main>
         </>
