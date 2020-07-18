@@ -58,7 +58,7 @@ export default class PoolsView extends React.Component {
             let previous24hRewards = responses[1].data.earningStats.reduce(
                 (acc, stat) => acc + stat.reward,
                 0
-            )
+            ).toFixed(6)
 
             this.setState({
                 loading: false,
@@ -139,7 +139,7 @@ export default class PoolsView extends React.Component {
                 <Layout title={pool} subTitle={currency} classSlug="pool-view">
                     <PullToRefresh loadData={this.loadHiveOnData}>
                         {loading ? (
-                            "Loading data..."
+                            <p>Loading data..</p>
                         ) : (
                             <>
                                 <h5>Unpaid balance</h5>
