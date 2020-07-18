@@ -55,10 +55,9 @@ export default class PoolsView extends React.Component {
         const earnings = this.getHiveOnEarnings(address, currency)
 
         return Promise.all([stats, earnings]).then((responses) => {
-            let previous24hRewards = responses[1].data.earningStats.reduce(
-                (acc, stat) => acc + stat.reward,
-                0
-            ).toFixed(6)
+            let previous24hRewards = responses[1].data.earningStats
+                .reduce((acc, stat) => acc + stat.reward, 0)
+                .toFixed(6)
 
             this.setState({
                 loading: false,
@@ -238,7 +237,9 @@ export default class PoolsView extends React.Component {
                                     <Col xs={6}>
                                         <h5 className="text-warning">
                                             {this.convertToMH(stats.hashrate)}{" "}
-                                            MH/s
+                                            <span className="small text-warning">
+                                                MH/s
+                                            </span>
                                         </h5>
                                         <p>Real Time Hashrate</p>
                                     </Col>
@@ -247,7 +248,9 @@ export default class PoolsView extends React.Component {
                                             {this.convertToMH(
                                                 stats.hashrate24h
                                             )}{" "}
-                                            MH/s
+                                            <span className="small text-warning">
+                                                MH/s
+                                            </span>
                                         </h5>
                                         <p>Avg. Hashrate over 24h</p>
                                     </Col>
@@ -261,7 +264,9 @@ export default class PoolsView extends React.Component {
                                             {this.convertToMH(
                                                 stats.reportedHashrate
                                             )}{" "}
-                                            MH/s
+                                            <span className="small text-warning">
+                                                MH/s
+                                            </span>
                                         </h5>
                                         <p>Reported Hashrate</p>
                                     </Col>
@@ -270,7 +275,9 @@ export default class PoolsView extends React.Component {
                                             {this.convertToMH(
                                                 stats.reportedHashrate24h
                                             )}{" "}
-                                            MH/s
+                                            <span className="small text-warning">
+                                                MH/s
+                                            </span>
                                         </h5>
                                         <p>Reported Hashrate over 24h</p>
                                     </Col>
@@ -280,24 +287,25 @@ export default class PoolsView extends React.Component {
 
                                 <Row>
                                     <Col xs={6}>
-                                        <h5 className="text-warning">
+                                        <h5>
                                             {stats.sharesStatusStats &&
                                                 stats.sharesStatusStats
-                                                    .validCount}{" "}
-                                            -{" "}
-                                            {stats.sharesStatusStats &&
-                                                stats.sharesStatusStats.validRate.toFixed(
-                                                    2
-                                                )}
-                                            %
+                                                    .validCount}
                                         </h5>
                                         <p>Valid shares</p>
                                     </Col>
                                     <Col xs={6} className="text-right">
-                                        <h5 className="text-warning">
+                                        <h5>
                                             {stats.sharesStatusStats &&
                                                 stats.sharesStatusStats
-                                                    .staleCount}
+                                                    .staleCount}{" "}
+                                            <span className="small text-success">
+                                                {stats.sharesStatusStats &&
+                                                    stats.sharesStatusStats.staleRate.toFixed(
+                                                        2
+                                                    )}
+                                                %
+                                            </span>
                                         </h5>
                                         <p>Stale shares</p>
                                     </Col>
