@@ -230,12 +230,14 @@ export default class Ethermine extends React.Component {
                                 right_title={
                                     <h5 className="text-warning">
                                         {(
-                                            convertToETH(settings.minPayout) -
-                                            convertToETH(
-                                                currentStatistics.unpaid
-                                            ) /
-                                                (currentStatistics.usdPerMin *
-                                                    60)
+                                            (convertToETH(settings.minPayout) -
+                                                convertToETH(
+                                                    currentStatistics.unpaid
+                                                ) /
+                                                    (currentStatistics.usdPerMin *
+                                                        60 *
+                                                        24)) *
+                                            24
                                         ).toFixed(2)}{" "}
                                         <span className="small text-body">
                                             Hours
@@ -253,9 +255,7 @@ export default class Ethermine extends React.Component {
 
                             <Statistic
                                 left_title={
-                                    <h5>
-                                        {currentStatistics.validShares}
-                                    </h5>
+                                    <h5>{currentStatistics.validShares}</h5>
                                 }
                                 left={[
                                     {
@@ -263,9 +263,7 @@ export default class Ethermine extends React.Component {
                                     },
                                 ]}
                                 right_title={
-                                    <h5>
-                                        {currentStatistics.staleShares}
-                                    </h5>
+                                    <h5>{currentStatistics.staleShares}</h5>
                                 }
                                 right={[
                                     {
