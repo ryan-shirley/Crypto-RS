@@ -9,7 +9,7 @@ const Statistic = ({ title = null, left_title = null, left = [], right_title = n
                 <Col xs={6}>
                     {left_title ? left_title : ''}
                     {left.map((data) => (
-                        <p>
+                        <p key={data.main + '-' + data.secondary}>
                             <span className="text-warning">{data.main}</span>{" "}
                             {data.secondary}
                         </p>
@@ -19,7 +19,7 @@ const Statistic = ({ title = null, left_title = null, left = [], right_title = n
                     <Col xs={6}>
                         {right_title ? right_title : ''}
                         {right.map((data) => (
-                        <p>
+                        <p key={data.main + '-' + data.secondary}>
                             <span className="text-warning">{data.main}</span>{" "}
                             {data.secondary}
                         </p>
