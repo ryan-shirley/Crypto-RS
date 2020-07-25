@@ -40,6 +40,11 @@ export default class Ethermine extends React.Component {
      * loadData() Retrieve data from Ethermine
      */
     async loadData() {
+        // Set loading to true
+        this.setState({
+            loading: true,
+        })
+        
         let app = this
 
         let dashboard = axios.get(
@@ -74,7 +79,7 @@ export default class Ethermine extends React.Component {
 
         return (
             <Layout title={pool} subTitle={currency} classSlug="pool-view">
-                <PullToRefresh loadData={this.loadHiveOnData}>
+                <PullToRefresh loadData={this.loadData}>
                     {loading ? (
                         <p>Loading data..</p>
                     ) : (
