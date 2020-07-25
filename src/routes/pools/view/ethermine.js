@@ -25,6 +25,8 @@ export default class Ethermine extends React.Component {
             address,
             statistics: {},
         }
+
+        this.loadData = this.loadData.bind(this)
     }
 
     /**
@@ -44,7 +46,7 @@ export default class Ethermine extends React.Component {
         this.setState({
             loading: true,
         })
-        
+
         let app = this
 
         let dashboard = axios.get(
