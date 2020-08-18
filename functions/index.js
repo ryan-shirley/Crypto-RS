@@ -52,7 +52,7 @@ const getMinerEarnings = functions.pubsub.schedule('0 0 * * *').onRun(async (con
                 amount = convertToETH(payment.amount)
 
             // Payment today
-            if(dif == 0) {
+            if(dif === 0) {
                 todaysPayouts.push(amount)
             }
 
