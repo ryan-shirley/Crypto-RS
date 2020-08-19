@@ -34,7 +34,7 @@ const createProfile = (userRecord, context) => {
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
-const getMinerEarnings = functions.pubsub.schedule('0 0 * * *').onRun(async (context) => {
+const getMinerEarnings = functions.region('europe-west2').pubsub.schedule('0 0 * * *').onRun(async (context) => {
     let ethAddress = functions.config().eth.address
 
     try {
