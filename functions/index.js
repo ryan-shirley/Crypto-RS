@@ -77,7 +77,7 @@ const getMinerEarnings = functions.region('europe-west2').pubsub.schedule('0 0 *
             unpaid: convertToETH(unpaid),
             reportedHashrate: convertHToMH(reportedHashrate),
             todaysPayouts: todaysPayouts.reduce((accumulator, currentValue) => accumulator + currentValue),
-            today: now,
+            today: now.diff(7, 'days'),
             price
         }
 
