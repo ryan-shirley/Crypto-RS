@@ -34,7 +34,7 @@ const createProfile = (userRecord, context) => {
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions
 
-const getMinerEarnings = functions.region('europe-west2').pubsub.schedule('0 0 * * *').onRun(async (context) => {
+const getMinerEarnings = functions.region('europe-west2').pubsub.schedule('0 0 * * 1').timeZone('Europe/Dublin').onRun(async (context) => {
     let ethAddress = functions.config().eth.address
 
     try {
@@ -45,14 +45,14 @@ const getMinerEarnings = functions.region('europe-west2').pubsub.schedule('0 0 *
         const now = moment()
 
         // Get all payouts same day
-        let todaysPayouts = [ 0 ]
+        let todaysPayouts = [0]
         payments.forEach(payment => {
             const paidOn = moment(new Date(payment.paidOn * 1000)),
                 dif = now.diff(paidOn, 'days'),
                 amount = convertToETH(payment.amount)
 
             // Payment today
-            if(dif === 0) {
+            if (dif === 0) {
                 todaysPayouts.push(amount)
             }
 
@@ -60,12 +60,17 @@ const getMinerEarnings = functions.region('europe-west2').pubsub.schedule('0 0 *
 
         // Unpaid
         let resStat = await axios.get(`https://api.ethermine.org/miner/${ethAddress}/currentStats`),
-        stats = resStat.data.data,
-        { unpaid, reportedHashrate } = stats
+            stats = resStat.data.data,
+            {
+                unpaid,
+                reportedHashrate
+            } = stats
 
         // Price
         let resPrice = await axios.get(`https://api.ethermine.org/poolStats`),
-        { price } = resPrice.data.data
+            {
+                price
+            } = resPrice.data.data
         price.eur = price.usd * 0.84
 
         let data = {
