@@ -52,7 +52,7 @@ const getMinerEarnings = functions.region('europe-west2').pubsub.schedule('0 0 *
                 amount = convertToETH(payment.amount)
 
             // Payment today
-            if (dif === 0) {
+            if (dif <= 7) {
                 todaysPayouts.push(amount)
             }
 
