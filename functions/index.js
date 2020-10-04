@@ -44,14 +44,14 @@ const getMinerEarnings = functions.region('europe-west2').pubsub.schedule('0 0 *
 
         const now = moment()
 
-        // Get all payouts same day
+        // Get all payouts last 7 days
         let todaysPayouts = [0]
         payments.forEach(payment => {
             const paidOn = moment(new Date(payment.paidOn * 1000)),
                 dif = now.diff(paidOn, 'days'),
                 amount = convertToETH(payment.amount)
 
-            // Payment today
+            // Payment last 7 days
             if (dif <= 7) {
                 todaysPayouts.push(amount)
             }
@@ -76,7 +76,7 @@ const getMinerEarnings = functions.region('europe-west2').pubsub.schedule('0 0 *
         let data = {
             unpaid: convertToETH(unpaid),
             reportedHashrate: convertHToMH(reportedHashrate),
-            todaysPayouts: todaysPayouts.reduce((accumulator, currentValue) => accumulator + currentValue),
+            todaysPayouts: todaysPayouts.reduce((accumulator, currentValue) => accumulator + currentValue), // Last 7 days payouts
             today: now.diff(7, 'days'),
             price
         }
